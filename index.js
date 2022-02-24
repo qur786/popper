@@ -4,6 +4,7 @@ import clear from "clear";
 import { Command } from "commander";
 import { isDirectoryExists, getCurrentDirectoryBase } from "./lib/files.js";
 import { setStoredGithubCredentials, createOctoApp } from "./lib/github-credentials.js";
+import { enterRepositoryInformations } from "./lib/inquirer.js";
 
 const CLI = new Command();
 
