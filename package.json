@@ -6,6 +6,10 @@
   "author": "Qurban Ahmad",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "start": "node index.js start",
+    "insert": "node index.js insert"
+  },
   "dependencies": {
     "chalk": "^5.0.0",
     "clear": "^0.1.0",
@@ -13,6 +17,8 @@
     "configstore": "^6.0.0",
     "figlet": "^1.5.2",
     "inquirer": "^8.2.0",
-    "minimist": "^1.2.5"
+    "loadash": "^1.0.0",
+    "minimist": "^1.2.5",
+    "octokit": "^1.7.1"
   }
 }
