@@ -3,8 +3,8 @@ import chalk from "chalk";
 import clear from "clear";
 import { Command } from "commander";
 import { isDirectoryExists, getCurrentDirectoryBase } from "./lib/files.js";
-import { setStoredGithubCredentials, createOctoApp } from "./lib/github-credentials.js";
-import { enterRepositoryInformations } from "./lib/inquirer.js";
+import { setStoredGithubCredentials, getStoredGithubToken } from "./lib/github-credentials.js";
+import { createRemoteRepository } from "./lib/create-a-repo.js";
 
 const CLI = new Command();
 
@@ -18,9 +18,16 @@ CLI
             horizontalLayout: "default",
             verticalLayout: "default",
         })))
-        const res = await createOctoApp(token);
         await setStoredGithubCredentials(token);
     });
+
+CLI
+    .command("build")
+    .description("Create a Git hub remote repo")
+    .action(async () => {
+        const token = getStoredGithubToken();
+        const respositoryResponse = await createRemoteRepository(token);
+    })
     
 CLI.parse(process.argv);
 
