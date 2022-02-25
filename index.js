@@ -27,6 +27,7 @@ CLI
     .action(async () => {
         const token = getStoredGithubToken();
         const respositoryResponse = await createRemoteRepository(token);
+        console.log(respositoryResponse.data.ssh_url);
     })
     
 CLI.parse(process.argv);
