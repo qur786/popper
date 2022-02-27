@@ -4,7 +4,7 @@ import clear from "clear";
 import { Command } from "commander";
 import { isDirectoryExists, getCurrentDirectoryBase } from "./lib/files.js";
 import { setStoredGithubCredentials, getStoredGithubToken } from "./lib/github-credentials.js";
-import { createRemoteRepository } from "./lib/create-a-repo.js";
+import { createRemoteRepository, generateGitignore, setupRepository } from "./lib/create-a-repo.js";
 
 const CLI = new Command();
 
@@ -26,8 +26,18 @@ CLI
     .description("Create a Git hub remote repo")
     .action(async () => {
         const token = getStoredGithubToken();
-        const respositoryResponse = await createRemoteRepository(token);
-        console.log(respositoryResponse.data.ssh_url);
+        console.log(token);
+        try {
+            const respositoryResponse = await createRemoteRepository(token);
+            console.log(respositoryResponse.data.ssh_url);
+            await generateGitignore();
+            const setup = await setupRepository();
+            if (setup) {
+                console.log(chalk.green("Yoooohooooo! Repository created."))
+            }
+        } catch (error) {
+            console.log(error.status);
+        }
     })
     
 CLI.parse(process.argv);
