@@ -2,7 +2,6 @@ import figlet from "figlet";
 import chalk from "chalk";
 import clear from "clear";
 import { Command } from "commander";
-import { isDirectoryExists, getCurrentDirectoryBase } from "./lib/files.js";
 import { setStoredGithubCredentials, getStoredGithubToken } from "./lib/github-credentials.js";
 import { createRemoteRepository, generateGitignore, setupRepository } from "./lib/create-a-repo.js";
 
