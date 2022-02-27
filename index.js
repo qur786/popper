@@ -28,9 +28,8 @@ CLI
         console.log(token);
         try {
             const respositoryResponse = await createRemoteRepository(token);
-            console.log(respositoryResponse.data.ssh_url);
             await generateGitignore();
-            const setup = await setupRepository();
+            const setup = await setupRepository(respositoryResponse.data.ssh_url);
             if (setup) {
                 console.log(chalk.green("Yoooohooooo! Repository created."))
             }
