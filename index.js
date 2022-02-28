@@ -22,7 +22,7 @@ CLI
 
 CLI
     .command("build")
-    .description("Create a Git hub remote repo")
+    .description("Create a Git hub remote repo and Local Git repo")
     .action(async () => {
         const token = getStoredGithubToken();
         console.log(token);
@@ -31,7 +31,7 @@ CLI
             await generateGitignore();
             const setup = await setupRepository(respositoryResponse.data.ssh_url);
             if (setup) {
-                console.log(chalk.green("Yoooohooooo! Repository created."))
+                console.log(chalk.green("Success! Repository created."))
             }
         } catch (error) {
             console.log(error.status);
